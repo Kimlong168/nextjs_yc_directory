@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
-
+import Markdown from "markdown-to-jsx";
 // import markdownit from "markdown-it";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
@@ -77,10 +77,9 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
           <h3 className="text-30-bold">Pitch Details</h3>
           {parsedContent ? (
-            <article
-              className="prose max-w-4xl font-work-sans break-all"
-              dangerouslySetInnerHTML={{ __html: parsedContent }}
-            />
+            <article>
+              <Markdown>{parsedContent}</Markdown>
+            </article>
           ) : (
             <p className="no-result">No details provided</p>
           )}
